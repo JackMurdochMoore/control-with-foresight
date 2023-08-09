@@ -1,5 +1,5 @@
 function iaxes = make_inset(h, ax, ZoomArea, InsetPos, Lines)
-    % Very slightly modified (Jack Murdoch Moore, 2023.02.19) from the following:
+    % Slightly modified (by Jack Murdoch Moore, 2023.02.19) from the following:
     % 
     % ************ MagInset.m *************
     % * Created: January 1, 2015          *
