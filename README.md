@@ -10,7 +10,7 @@ __About__\
 This code should allow reproduction of Fig. 2-3 of the paper via the following steps.
 1. To generate the data, run the script "gen_data_comparison" with 'comparisonType = 1' and 'comparisonType = 2' (see lines 11-12 of the script).
     * This will produce the .MAT files of data "comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43_energy-1,1,1,1.mat" and "comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat".\
-3. Run "plot_relaxation_comparison" and "plot_strategy_comparison" to use the .MAT files to produce the image files "comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png" (Fig. 3 of paper) and "comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png" (Fig. 2 of paper).
+2. Run "plot_relaxation_comparison" and "plot_strategy_comparison" to use the .MAT files to produce the image files "comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png" (Fig. 3 of paper) and "comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png" (Fig. 2 of paper).
 
 __Functions and scripts:__\
 _compare_corr_dim_est_3.m:_ Estimate correlation dimension and scaling interval of synthetic networks using different methods and model c(s) = s^(D-1), and save results in folder results-est-dim-3.\
