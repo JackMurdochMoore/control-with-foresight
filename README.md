@@ -1,7 +1,8 @@
 # alite
 Code implementing local linearisation-based control methods for nonlinear systems. Developed in MATLAB R2020a.
 
-__Associated with the paper__ "Foresight and relaxation enable efficient control of nonlinear complex systems"\
+__Associated with the paper__\
+"Foresight and relaxation enable efficient control of nonlinear complex systems"\
 by\
 Xin Zhang, Xiaozhu Zhang, Gang Yan,∗ and Jack Murdoch Moore.
 
