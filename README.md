@@ -23,5 +23,5 @@ __Functions and scripts:__
 __Data and images:__
 * _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat:_ Data, produced by script _gen_data_comparison.m_ via function _control_func.m_, which allows comparison of different control strategies.
 * _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43_energy-1,1,1,1.mat:_ Data, produced by script _gen_data_comparison.m_ via function _control_func.m_, which allows comparison of different values of the relaxation parameter r.
-* _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.PNG:_ Image, produced by script _plot_strategy_comparison.m_ using data _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_, which juxtaposes outcomes of different control strategies.
+* _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png:_ Image, produced by script _plot_strategy_comparison.m_ using data _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_, which juxtaposes outcomes of different control strategies.
 * _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png:_ Image, produced by script _plot_relaxation_comparison.m_ using data _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43_energy-1,1,1,1.mat_, which juxtaposes outcomes of different values of the relaxation parameter r.
