@@ -17,8 +17,8 @@ __Functions and scripts:__\
 * _control_func.m:_ Function which implements different control strategies.
 * _plot_strategy_comparison.m:_ Script which uses data _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_ to produce image _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png_ (Fig. 3 of paper).
 * _plot_relaxation_comparison.m:_ Script which uses data _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_ to produce image _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_ (Fig. 2 of paper).
-* 
-* 
+* _vector_to_string.m:_ A function to turn a vector into a string format which is convenient useful for saving files with informative names.
+* _make_inset.m:_ A function used to make insets in the images _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png_ (Fig. 3 of paper) and _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png_ (Fig. 2 of paper).
 
 __Data and images:__\
 * _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat:_ Data, produced by script _gen_data_comparison.m_ via function _control_func.m_, which allows comparison of different control strategies.
