@@ -11,7 +11,8 @@ __This code__ allows reproduction of Fig. 2-3 of the paper via the following ste
    Run the script _gen_data_comparison_ with "comparisonType = 1" and "comparisonType = 2" in lines 11-12 of the script.
     * This will produce the .MAT files of data _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43_energy-1,1,1,1.mat_ and _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_.
 2. Make plots from data.\
-   Run _plot_relaxation_comparison_ and _plot_strategy_comparison_ to use the .MAT files to produce the image files _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png_ (Fig. 3 of paper) and _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png_ (Fig. 2 of paper).
+   Run _plot_relaxation_comparison_ and _plot_strategy_comparison_.
+    * This will use the .MAT files to produce the image files _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43.png_ (Fig. 3 of paper) and _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43.png_ (Fig. 2 of paper).
 
 __Functions and scripts:__
 * _gen_data_comparison.m:_ Script which defines dynamical system, finds its fixed points and runs function _control_func.m_ to implement control.
