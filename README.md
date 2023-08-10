@@ -1,4 +1,4 @@
-# alite
+# control-with-foresight
 Code implementing local linearisation-based control methods for nonlinear systems. Developed in MATLAB R2020a.
 
 __Associated with the paper__\
