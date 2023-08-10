@@ -151,31 +151,18 @@ while ((dist_t > tol4) && (~isnan(dist_t)) && (iter < maxNumIter)) && (closestRe
         dtList = (0:dt00:max(1.5*dt00, (DT + tol3)))';
         ode_fun_lin = @(t, xvse) lin_dyn_with_cont_fun_2(xvse(1:m), xvse((m + 1):(2*m)), f, A, B);
         v_1 = expm(A'*DT)/(W_T2)*(xf - g_T);%Calculate initial condition for ODE which implements control
-        if ~any(isnan(v_1))
-            [dtList, XVSELin] = ode45(ode_fun_lin, dtList, [x_t; v_1; 0; 0], opt);
-            ssL = XVSELin(:, 2*m + 1)';%Distance travelled after each time for linearised system
-            [ssL2, ind] = unique(ssL);
-            keepIndBool = (isfinite(ssL2) & ~isnan(ssL2));
-            ind = ind(keepIndBool); ssL2 = ssL2(keepIndBool);
-            dtList2 = dtList(ind);
-            if (ssL2(end) < dx)
-                dtf = dtList2(end);
-            else
-                dtf = interp1(ssL2, dtList2, dx);%Time required to use energy for linear system
-            end
-            if ~isempty(dtf) && (dtf >= dtfMin)%Time increments which are too small could cause numerical problems
-                tSpan = linspace(0, dtf, k + 1)';
-            else
-                v_1 = NaN*v_1;
-            end
-
+        [dtList, XVSELin] = ode45(ode_fun_lin, dtList, [x_t; v_1; 0; 0], opt);
+        ssL = XVSELin(:, 2*m + 1)';%Distance travelled after each time for linearised system
+        [ssL2, ind] = unique(ssL);
+        keepIndBool = (isfinite(ssL2) & ~isnan(ssL2));
+        ind = ind(keepIndBool); ssL2 = ssL2(keepIndBool);
+        dtList2 = dtList(ind);
+        if (ssL2(end) < dx)
+            dtf = dtList2(end);
+        else
+            dtf = interp1(ssL2, dtList2, dx);%Time required to use energy for linear system
         end
-
-        if any(isnan(v_1))
-            v_1 = NaN(m, 1);
-            dtf = 0;
-            tSpan = linspace(0, dtf, k+1)';
-        end
+        tSpan = linspace(0, dtf, k + 1)';
 
     elseif (strategy == 45)%EILOCS: Use (at most) energy de in moving, according to local linearisation, directly towards final target xf from destination g_tf under free evolution
 

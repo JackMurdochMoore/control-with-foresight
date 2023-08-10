@@ -8,23 +8,9 @@
 close all;
 clear;
 
-% comparisonType = 1;%Generate data to compare strategies (by running plot_strategy_comparison)
-comparisonType = 2;%Compare relaxation values (by running plot_relaxation_comparison)
+fprintf('Finding fixed points ');
 
 ticTotal = tic;
-
-switch comparisonType
-    case 1
-        strategyList = [45, 46, 43];%Control strategies to consider: 43 - ALITE; 45 - EILOCS; 46 - DDLOCS
-        r0 = 10^-4; rList = r0*[1, 1, 1];%Relaxation parameter r
-        deList = [10^5, 1, 1];%Energy increment Delta E
-        controlNodes = [3, 4];%Driver nodes/control set
-    case 2
-        strategyList = [43, 43, 43, 43];%Control strategies to consider: 43 - ALITE; 45 - EILOCS; 46 - DDLOCS
-        rList = [10^-6, 0.001, 0.1, 1];%Relaxation parameter r
-        deList = [1, 1, 1, 1];%Energy increment Delta E
-        controlNodes = [3, 5];%Driver nodes/control set
-end
 
 % Generate network defining coupling
 randSeed = 0;%Seed for repeatability
@@ -116,12 +102,9 @@ if (max(abs(Xs(:))) < 10^-6) && all(evol_dyn(zeros(m, 1)) < 10^-6); Xs = zeros(m
 num_fp = size(Xs, 2);%Number of fixed points
 
 timeFixedPoints = toc(ticTotal);
-disp(['Time to find fixed points: ', num2str(timeFixedPoints), ' s.']);
-
-ticControl = tic;
+disp(['took ', num2str(timeFixedPoints), ' s.']);
 
 dtfMin = 0;
-assert(numel(strategyList) == numel(rList), 'Variables strategyList and rList should have the same number of elements.');
 dx = 10^-1;
 dt = 10^-2;
 dt00 = 10^-2*dt;
@@ -150,31 +133,49 @@ numPairs = size(ii0_ii_f_pairs, 1);
     
 ticControlStrategy = tic;
 
-resultsCell = cell(numPairs + 1, 11);
-resultsCell2 = cell(numPairs + 1, 11);
-
-inputStructure.T0 = T0;
-inputStructure.maxNumIter = maxNumIter;%Maximum allowed number of iterations
-inputStructure.dtfMin = dtfMin;%Minimum allowed time increment
-inputStructure.rList = rList;%Perturbation added to Gramian matrix when calculating v_1 (modes 17 and 18 only)
-inputStructure.dx = dx;%Each step, aim to move dx closer.
-inputStructure.deList = deList;%Each step, aim to use energy de.
-inputStructure.dt = dt;
-inputStructure.dt00 = dt00;
-inputStructure.DtDistExp = DtDistExp;%Exponent by which time increment Dt scales with distance
-inputStructure.pertDistExp = pertDistExp;%Exponent by which perturbation scales with distance
-
-for jjPair = 1:numPairs % parfor jj = 1:numPairs 
-    line_para = cell(1,10);
-    ii0_i_f = ii0_ii_f_pairs(jjPair, :);
-    ii0 = ii0_i_f(1); ii_f = ii0_i_f(2); % Initial, final stable fixed point
+for comparisonType = [1, 2]
     
-    control_func(ii0, ii_f, Xs, strategyList, evol_dyn, jac_mat, controlNodes, inputStructure);
+    switch comparisonType
+        case 1
+            fprintf('Comparing EILOCS, DDLOCS and ALITE control strategies ');
+            strategyList = [45, 46, 43];%Control strategies to consider: 43 - ALITE; 45 - EILOCS; 46 - DDLOCS
+            r0 = 10^-4; rList = r0*[1, 1, 1];%Relaxation parameter r
+            deList = [10^5, 1, 1];%Energy increment Delta E
+            controlNodes = [3, 4];%Driver nodes/control set
+        case 2
+            fprintf('Comparing relaxation values for ALITE control strategy ');
+            strategyList = [43, 43, 43, 43];%Control strategies to consider: 43 - ALITE; 45 - EILOCS; 46 - DDLOCS
+            rList = [10^-6, 0.001, 0.1, 1];%Relaxation parameter r
+            deList = [1, 1, 1, 1];%Energy increment Delta E
+            controlNodes = [3, 5];%Driver nodes/control set
+    end
+    
+    ticControl = tic;
+    
+    inputStructure.T0 = T0;
+    inputStructure.maxNumIter = maxNumIter;%Maximum allowed number of iterations
+    inputStructure.dtfMin = dtfMin;%Minimum allowed time increment
+    inputStructure.rList = rList;%Perturbation added to Gramian matrix when calculating v_1 (modes 17 and 18 only)
+    inputStructure.dx = dx;%Each step, aim to move dx closer.
+    inputStructure.deList = deList;%Each step, aim to use energy de.
+    inputStructure.dt = dt;
+    inputStructure.dt00 = dt00;
+    inputStructure.DtDistExp = DtDistExp;%Exponent by which time increment Dt scales with distance
+    inputStructure.pertDistExp = pertDistExp;%Exponent by which perturbation scales with distance
+    
+    for jjPair = 1:numPairs % parfor jj = 1:numPairs
+        line_para = cell(1,10);
+        ii0_i_f = ii0_ii_f_pairs(jjPair, :);
+        ii0 = ii0_i_f(1); ii_f = ii0_i_f(2); % Initial, final stable fixed point
+        
+        control_func(ii0, ii_f, Xs, strategyList, evol_dyn, jac_mat, controlNodes, inputStructure);
+        
+    end
+    
+    timeControl = toc(ticControl);
+    disp(['took ', num2str(timeControl), ' s.']);
     
 end
-
-timeControl = toc(ticControl);
-disp(['Time for control: ', num2str(timeControl), ' s.']);
 
 timeTotal = toc(ticTotal);
 disp(['Total time: ', num2str(timeTotal), ' s.']);
