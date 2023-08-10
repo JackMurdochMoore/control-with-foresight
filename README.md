@@ -6,7 +6,7 @@ __Associated with the paper__\
 by\
 Xin Zhang, Xiaozhu Zhang, Gang Yan,∗ and Jack Murdoch Moore.
 
-__This code__ allows reproduction of Fig. 2-3 of the paper via the following steps (The .MAT files for making plots are available in this repository so, if you like, go straight to Step 2).
+__This code__ allows reproduction of Fig. 2-3 of the paper via the following steps (if you like, go straight to Step 2).
 1. Generate data.\
    Run the script _gen_data_comparison_ with "comparisonType = 1" and "comparisonType = 2" in lines 11-12 of the script.
     * This will produce the .MAT files of data _comparison-1e-06,0.001,0.1,1_bist_cont-3,5_strat-43,43,43,43_energy-1,1,1,1.mat_ and _comparison-0.0001,0.0001,0.0001_bist_cont-3,4_strat-45,46,43_energy-100000,1,1.mat_.
