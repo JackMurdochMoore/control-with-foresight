@@ -99,6 +99,8 @@ text(x0(plotDim1), x0(plotDim2), '${\textbf{\textit{x}}}_{{I}}$', 'HorizontalAli
 text(xf(plotDim1), xf(plotDim2), '${\textbf{\textit{x}}}_{{F}}$', 'HorizontalAlignment', 'Right', 'VerticalAlignment', 'Top', 'FontSize', fontSize, 'Interpreter', 'LaTeX', 'Margin', eps);
 leg = legend(patienceLegCell, 'Location', 'South', 'Interpreter', 'LaTeX', 'Box', 'Off');
 
+ax.Units = 'Normalized';
+
 axisInset = make_inset(patienceFig, ax, zoomArea, insetPos, insetLineCell);
 
 exportgraphics(patienceFig, ['comparison-', vector_to_string(rList), '_', sysStr, '_cont-', vector_to_string(controlNodes), '_strat-', vector_to_string(strategyList), '.png']);
